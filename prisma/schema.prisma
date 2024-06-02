@@ -13,35 +13,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Mecanico {
-  id    String @id @default(uuid())
-  email String @unique
-  senha String
+model Mechanic {
+  id       String @id @default(uuid())
+  email    String @unique
+  password String
 
-  @@map("mecanicos")
+  @@map("mechanics")
 }
 
-model Cliente {
-  id      String  @id @default(uuid())
-  nome    String
-  cpf     String  @unique
-  celular String?
+model Client {
+  id    String  @id @default(uuid())
+  name  String
+  cpf   String  @unique
+  phone String?
 
-  servicos Servico[]
+  services Service[]
 
-  @@map("clientes")
+  @@map("clients")
 }
 
-model Servico {
-  id          String    @id @default(uuid())
-  veiculo     String
-  placa       String
-  descricao   String?
-  dataEntrada DateTime  @default(now())
-  dataSaida   DateTime?
+model Service {
+  id           String    @id @default(uuid())
+  vehicle      String
+  licensePlate String
+  description  String?
+  entryDate    DateTime  @default(now())
+  exitDate     DateTime?
 
-  cliente   Cliente @relation(fields: [clienteId], references: [id])
-  clienteId String
+  client   Client @relation(fields: [clientId], references: [id])
+  clientId String
 
-  @@map("servicos")
+  @@map("services")
 }
