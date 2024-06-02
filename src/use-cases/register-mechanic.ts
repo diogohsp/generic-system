@@ -1,5 +1,6 @@
 import { MechanicRepository } from '@/repositories/mechanics-repository'
 import { hash } from 'bcryptjs'
+import { EmailAlreadyExistsError } from './errors/email-already-exists.error'
 
 interface RegisterMechanicUseCaseRequest {
   email: string
@@ -14,7 +15,7 @@ export class RegisterMechanicUseCase {
       await this.mechanicRepository.findByEmail(email)
 
     if (mechanicWithSameEmail) {
-      throw new Error('E-mail já cadastrado')
+      throw new EmailAlreadyExistsError()
     }
 
     const hashedPassword = await hash(password, 6)

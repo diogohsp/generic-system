@@ -1,4 +1,5 @@
 import { PrismaMechanicsRepository } from '@/repositories/prisma/prisma-mechanics.repository'
+import { EmailAlreadyExistsError } from '@/use-cases/errors/email-already-exists.error'
 import { RegisterMechanicUseCase } from '@/use-cases/register-mechanic'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
@@ -36,6 +37,10 @@ export async function registerMechanic(
 
     return reply.status(201).send()
   } catch (error) {
-    return reply.status(409).send()
+    if (error instanceof EmailAlreadyExistsError) {
+      return reply.status(409).send({ message: error.message })
+    }
+
+    throw error
   }
 }
