@@ -1,0 +1,27 @@
+{
+  "name": "oficina-inteligente-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src --out-dir build",
+    "start": "node build/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@rocketseat/eslint-config": "2.2.2",
+    "@types/node": "20.14.0",
+    "eslint": "8.0.0",
+    "tsup": "8.0.2",
+    "tsx": "4.11.0",
+    "typescript": "5.4.5"
+  },
+  "dependencies": {
+    "dotenv": "16.4.5",
+    "fastify": "4.27.0",
+    "zod": "3.23.8"
+  }
+}
