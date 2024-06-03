@@ -49,11 +49,11 @@ describe('Register Mechanic Use Case', async () => {
       password: 'Abcd123@',
     })
 
-    expect(async () => {
-      await registerMehanicUseCase.execute({
+    await expect(() =>
+      registerMehanicUseCase.execute({
         email: 'john@doe.com',
         password: 'Abcd123@',
-      })
-    }).rejects.toBeInstanceOf(EmailAlreadyExistsError)
+      }),
+    ).rejects.toBeInstanceOf(EmailAlreadyExistsError)
   })
 })
