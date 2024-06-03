@@ -1,5 +1,6 @@
 # Requisitos funcionais
 
+- [ ] Deve ser possível cadastar um mecânico
 - [ ] Deve ser possível se autenticar como mecânico
 - [ ] Deve ser possível o mecânico cadastrar um cliente
 - [ ] Deve ser possível o mecânico cadastrar um serviço

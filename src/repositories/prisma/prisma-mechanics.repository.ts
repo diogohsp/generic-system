@@ -1,8 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import { Prisma } from '@prisma/client'
-import { MechanicRepository } from '../mechanics-repository'
+import { MechanicsRepository } from '../mechanics-repository'
 
-export class PrismaMechanicsRepository implements MechanicRepository {
+export class PrismaMechanicsRepository implements MechanicsRepository {
   async create(data: Prisma.MechanicCreateInput) {
     const mechanic = await prisma.mechanic.create({
       data: {

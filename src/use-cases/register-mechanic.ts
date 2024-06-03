@@ -1,16 +1,24 @@
 import { MechanicRepository } from '@/repositories/mechanics-repository'
 import { hash } from 'bcryptjs'
 import { EmailAlreadyExistsError } from './errors/email-already-exists.error'
+import { Mechanic } from '@prisma/client'
 
 interface RegisterMechanicUseCaseRequest {
   email: string
   password: string
 }
 
+interface RegisterMechanicUseCaseResponse {
+  mechanic: Mechanic
+}
+
 export class RegisterMechanicUseCase {
   constructor(private mechanicRepository: MechanicRepository) {}
 
-  async execute({ email, password }: RegisterMechanicUseCaseRequest) {
+  async execute({
+    email,
+    password,
+  }: RegisterMechanicUseCaseRequest): Promise<RegisterMechanicUseCaseResponse> {
     const mechanicWithSameEmail =
       await this.mechanicRepository.findByEmail(email)
 
