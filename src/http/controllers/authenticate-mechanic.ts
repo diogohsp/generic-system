@@ -1,6 +1,5 @@
-import { PrismaMechanicsRepository } from '@/repositories/prisma/prisma-mechanics.repository'
-import { AuthenticateMechanicUseCase } from '@/use-cases/authenticate-mechanic'
 import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error'
+import { makeAuthenticateMechanicUseCase } from '@/use-cases/factories/make-authenticate-mechanic-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
@@ -16,10 +15,7 @@ export async function authenticateMechanic(
   const { email, password } = bodySchema.parse(request.body)
 
   try {
-    const mechanicsRepository = new PrismaMechanicsRepository()
-    const authenticateMechanicUseCase = new AuthenticateMechanicUseCase(
-      mechanicsRepository,
-    )
+    const authenticateMechanicUseCase = makeAuthenticateMechanicUseCase()
 
     const { mechanic } = await authenticateMechanicUseCase.execute({
       email,
