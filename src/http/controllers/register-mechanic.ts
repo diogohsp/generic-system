@@ -1,6 +1,5 @@
-import { PrismaMechanicsRepository } from '@/repositories/prisma/prisma-mechanics.repository'
 import { EmailAlreadyExistsError } from '@/use-cases/errors/email-already-exists.error'
-import { RegisterMechanicUseCase } from '@/use-cases/register-mechanic'
+import { makeRegisterMechanicUseCase } from '@/use-cases/factories/make-register-mechanic-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
@@ -25,10 +24,7 @@ export async function registerMechanic(
   const { email, password } = bodySchema.parse(request.body)
 
   try {
-    const mechanicsRepository = new PrismaMechanicsRepository()
-    const registerMechanicUseCase = new RegisterMechanicUseCase(
-      mechanicsRepository,
-    )
+    const registerMechanicUseCase = makeRegisterMechanicUseCase()
 
     await registerMechanicUseCase.execute({
       email,
