@@ -1,7 +1,7 @@
-import { MechanicRepository } from '@/repositories/mechanics-repository'
 import { hash } from 'bcryptjs'
 import { EmailAlreadyExistsError } from './errors/email-already-exists.error'
 import { Mechanic } from '@prisma/client'
+import { MechanicsRepository } from '@/repositories/mechanics-repository'
 
 interface RegisterMechanicUseCaseRequest {
   email: string
@@ -13,7 +13,7 @@ interface RegisterMechanicUseCaseResponse {
 }
 
 export class RegisterMechanicUseCase {
-  constructor(private mechanicRepository: MechanicRepository) {}
+  constructor(private mechanicRepository: MechanicsRepository) {}
 
   async execute({
     email,
