@@ -1,17 +1,20 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { RegisterMechanicUseCase } from './register-mechanic'
 import { compare } from 'bcryptjs'
 import { InMemoryMechaenicsRepository } from '@/repositories/in-memory/in-memory-mechanics.repository'
 import { EmailAlreadyExistsError } from './errors/email-already-exists.error'
 
-describe('Register Mechanic Use Case', async () => {
-  it('should be able to register a new mechanic', async () => {
-    const mechanicsRepository = new InMemoryMechaenicsRepository()
-    const registerMehanicUseCase = new RegisterMechanicUseCase(
-      mechanicsRepository,
-    )
+let mechanicsRepository: InMemoryMechaenicsRepository
+let sut: RegisterMechanicUseCase
 
-    const { mechanic } = await registerMehanicUseCase.execute({
+describe('Register Mechanic Use Case', async () => {
+  beforeEach(async () => {
+    mechanicsRepository = new InMemoryMechaenicsRepository()
+    sut = new RegisterMechanicUseCase(mechanicsRepository)
+  })
+
+  it('should be able to register a new mechanic', async () => {
+    const { mechanic } = await sut.execute({
       email: 'john@doe.com',
       password: 'Abcd123@',
     })
@@ -20,12 +23,7 @@ describe('Register Mechanic Use Case', async () => {
   })
 
   it('should hash mechanic password upon registration', async () => {
-    const mechanicsRepository = new InMemoryMechaenicsRepository()
-    const registerMehanicUseCase = new RegisterMechanicUseCase(
-      mechanicsRepository,
-    )
-
-    const { mechanic } = await registerMehanicUseCase.execute({
+    const { mechanic } = await sut.execute({
       email: 'john@joe.com',
       password: 'Abcd123@',
     })
@@ -39,18 +37,13 @@ describe('Register Mechanic Use Case', async () => {
   })
 
   it('should not be able to register a mechanic with an existing email', async () => {
-    const mechanicsRepository = new InMemoryMechaenicsRepository()
-    const registerMehanicUseCase = new RegisterMechanicUseCase(
-      mechanicsRepository,
-    )
-
-    await registerMehanicUseCase.execute({
+    await sut.execute({
       email: 'john@doe.com',
       password: 'Abcd123@',
     })
 
     await expect(() =>
-      registerMehanicUseCase.execute({
+      sut.execute({
         email: 'john@doe.com',
         password: 'Abcd123@',
       }),
