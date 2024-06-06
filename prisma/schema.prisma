@@ -33,15 +33,21 @@ model Client {
 }
 
 model Service {
-  id           String    @id @default(uuid())
+  id           String        @id @default(uuid())
   vehicle      String
   licensePlate String
   description  String?
-  entryDate    DateTime  @default(now())
-  exitDate     DateTime?
+  status       ServiceStatus @default(PENDING)
 
   client   Client @relation(fields: [clientId], references: [id])
   clientId String
 
   @@map("services")
+}
+
+enum ServiceStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
 }
