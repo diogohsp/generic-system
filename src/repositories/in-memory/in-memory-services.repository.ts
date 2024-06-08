@@ -1,18 +1,17 @@
 import { Prisma, Service, ServiceStatus } from '@prisma/client'
 import { ServicesRepository } from '../services-repositroy'
-import { randomUUID } from 'crypto'
 
 export class InMemoryServicesRepository implements ServicesRepository {
   public items: Service[] = []
 
   async create(data: Prisma.ServiceUncheckedCreateInput) {
     const service = {
-      id: randomUUID(),
+      id: BigInt(this.items.length + 1),
       vehicle: data.vehicle,
       licensePlate: data.licensePlate,
       description: data.description ?? null,
       status: data.status ?? ServiceStatus.PENDING,
-      clientId: data.clientId,
+      clientId: BigInt(data.clientId),
     }
 
     this.items.push(service)

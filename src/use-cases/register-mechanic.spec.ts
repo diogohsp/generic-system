@@ -19,7 +19,7 @@ describe('Register Mechanic Use Case', async () => {
       password: 'Abcd123@',
     })
 
-    expect(mechanic.id).toEqual(expect.any(String))
+    expect(mechanic.id).toEqual(expect.any(BigInt))
   })
 
   it('should hash mechanic password upon registration', async () => {

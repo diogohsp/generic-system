@@ -25,16 +25,16 @@ describe('Create Service Use Case', async () => {
       vehicle: 'Fusca',
       licensePlate: 'ABC-1234',
       description: null,
-      clientId: client.id,
+      clientId: BigInt(client.id),
     })
 
     expect(service).toEqual(
       expect.objectContaining({
-        id: expect.any(String),
+        id: expect.any(BigInt),
         vehicle: 'Fusca',
         licensePlate: 'ABC-1234',
         description: null,
-        clientId: client.id,
+        clientId: BigInt(client.id),
         status: 'PENDING',
       }),
     )
@@ -46,7 +46,7 @@ describe('Create Service Use Case', async () => {
         vehicle: 'Fusca',
         licensePlate: 'ABC-1234',
         description: null,
-        clientId: 'non-existing-client-id',
+        clientId: BigInt(1),
       }),
     ).rejects.toBeInstanceOf(ClienteNotFoundError)
   })

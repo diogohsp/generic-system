@@ -1,13 +1,12 @@
 import { Prisma, Mechanic } from '@prisma/client'
 import { MechanicsRepository } from '../mechanics-repository'
-import { randomUUID } from 'crypto'
 
 export class InMemoryMechaenicsRepository implements MechanicsRepository {
   public items: Mechanic[] = []
 
   async create(data: Prisma.MechanicCreateInput) {
     const mechanic = {
-      id: randomUUID(),
+      id: BigInt(this.items.length + 1),
       email: data.email,
       password: data.password,
     }

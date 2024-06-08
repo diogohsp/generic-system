@@ -24,7 +24,7 @@ describe('Authenticate Mechanic Use Case', async () => {
       password: 'Abcd123@',
     })
 
-    expect(mechanic.id).toEqual(expect.any(String))
+    expect(mechanic.id).toEqual(expect.any(BigInt))
   })
 
   it('should not be able to authenticate a mechanic with doenst exists', async () => {
