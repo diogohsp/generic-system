@@ -1,13 +1,12 @@
 import { Client, Prisma } from '@prisma/client'
 import { ClientsRepository } from '../clients-repository'
-import { randomUUID } from 'crypto'
 
 export class InMemoryClientsRepository implements ClientsRepository {
   public items: Client[] = []
 
   async create(data: Prisma.ClientCreateInput) {
     const client = {
-      id: randomUUID(),
+      id: BigInt(this.items.length + 1),
       name: data.name,
       cpf: data.cpf,
       phone: data.phone ?? null,
@@ -28,7 +27,7 @@ export class InMemoryClientsRepository implements ClientsRepository {
     return client
   }
 
-  async findById(id: string) {
+  async findById(id: bigint) {
     const client = this.items.find((item) => item.id === id)
 
     if (!client) {

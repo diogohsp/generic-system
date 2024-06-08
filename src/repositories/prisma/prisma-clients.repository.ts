@@ -25,7 +25,7 @@ export class PrismaClientsRepository implements ClientsRepository {
     return client
   }
 
-  async findById(id: string) {
+  async findById(id: bigint) {
     const client = await prisma.client.findUnique({
       where: {
         id,

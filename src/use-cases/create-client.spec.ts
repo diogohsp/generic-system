@@ -19,7 +19,7 @@ describe('Create Client Use Case', async () => {
       phone: '12345678900',
     })
 
-    expect(client.id).toEqual(expect.any(String))
+    expect(client.id).toEqual(expect.any(BigInt))
   })
 
   it('should not create a client with an existing CPF', async () => {
