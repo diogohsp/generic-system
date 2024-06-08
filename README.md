@@ -8,7 +8,7 @@
 - [ ] Deve ser possível o mecânico visualizar detalhes de um serviço
 - [ ] Deve ser possível o mecânico editar um cliente
 - [ ] Deve ser possível o mecânico editar um serviço
-- [ ] Deve ser possível o mecânico excluir um cliente
+- [x] Deve ser possível o mecânico excluir um cliente
 - [ ] Deve ser possível o mecânico excluir um serviço
 - [ ] Deve ser possível o mecânico obter os clientes
 - [ ] Deve ser possível o mecânico filtrar os clientes pelo nome
