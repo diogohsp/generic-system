@@ -39,7 +39,7 @@ model Service {
   description  String?
   status       ServiceStatus @default(PENDING)
 
-  client   Client @relation(fields: [clientId], references: [id])
+  client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
   clientId BigInt
 
   @@map("services")
