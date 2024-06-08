@@ -36,4 +36,16 @@ export class InMemoryClientsRepository implements ClientsRepository {
 
     return client
   }
+
+  async delete(id: bigint) {
+    const client = this.items.find((item) => item.id === id)
+
+    if (!client) {
+      return null
+    }
+
+    this.items = this.items.filter((item) => item.id !== id)
+
+    return client
+  }
 }

@@ -34,4 +34,14 @@ export class PrismaClientsRepository implements ClientsRepository {
 
     return client
   }
+
+  async delete(id: bigint) {
+    const client = await prisma.client.delete({
+      where: {
+        id,
+      },
+    })
+
+    return client
+  }
 }
