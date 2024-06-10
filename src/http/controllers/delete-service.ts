@@ -1,9 +1,9 @@
-import { ClienteNotFoundError } from '@/use-cases/errors/client-not-found.error'
-import { makeDeleteClientUseCase } from '@/use-cases/factories/make-delete-client-use-case'
+import { ServiceNotFoundError } from '@/use-cases/errors/service-not-found.error'
+import { makeDeleteServiceUseCase } from '@/use-cases/factories/make-delete-service-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-export async function deleteClient(
+export async function deleteService(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
@@ -14,15 +14,15 @@ export async function deleteClient(
   const { id } = paramsSchema.parse(request.params)
 
   try {
-    const deleteClientUseCase = makeDeleteClientUseCase()
+    const deleteServiceUseCase = makeDeleteServiceUseCase()
 
-    await deleteClientUseCase.execute({
+    await deleteServiceUseCase.execute({
       id,
     })
 
     return reply.status(200).send()
   } catch (error) {
-    if (error instanceof ClienteNotFoundError) {
+    if (error instanceof ServiceNotFoundError) {
       return reply.status(404).send({ message: error.message })
     }
 

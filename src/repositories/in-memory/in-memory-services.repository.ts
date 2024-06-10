@@ -18,4 +18,26 @@ export class InMemoryServicesRepository implements ServicesRepository {
 
     return service
   }
+
+  async findById(id: bigint) {
+    const service = this.items.find((service) => service.id === id)
+
+    if (!service) {
+      return null
+    }
+
+    return service
+  }
+
+  async delete(id: bigint) {
+    const service = this.items.find((service) => service.id === id)
+
+    if (!service) {
+      return null
+    }
+
+    this.items = this.items.filter((service) => service.id !== id)
+
+    return service
+  }
 }

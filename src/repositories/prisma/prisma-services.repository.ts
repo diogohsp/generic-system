@@ -16,4 +16,24 @@ export class PrismaServicesRepository implements ServicesRepository {
 
     return service
   }
+
+  async findById(id: bigint) {
+    const service = await prisma.service.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return service
+  }
+
+  async delete(id: bigint) {
+    const service = await prisma.service.delete({
+      where: {
+        id,
+      },
+    })
+
+    return service
+  }
 }

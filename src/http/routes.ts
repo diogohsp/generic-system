@@ -4,6 +4,7 @@ import { authenticateMechanic } from './controllers/authenticate-mechanic'
 import { createClient } from './controllers/create-client'
 import { deleteClient } from './controllers/delete-client'
 import { createService } from './controllers/create-service'
+import { deleteService } from './controllers/delete-service'
 
 export async function appRoutes(app: FastifyInstance) {
   app.post('/mechanics', registerMechanic)
@@ -11,4 +12,5 @@ export async function appRoutes(app: FastifyInstance) {
   app.post('/clients', createClient)
   app.post('/services', createService)
   app.delete('/clients/:id', deleteClient)
+  app.delete('/services/:id', deleteService)
 }
