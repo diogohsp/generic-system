@@ -25,7 +25,7 @@ export async function createService(
       },
       { message: 'Placa inválida' },
     ),
-    description: z.string().nullable(),
+    description: z.string().optional(),
     clientId: z.coerce.number(),
   })
 

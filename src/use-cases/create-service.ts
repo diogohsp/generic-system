@@ -5,7 +5,7 @@ import { ClienteNotFoundError } from './errors/client-not-found.error'
 interface CreateServiceUseCaseRequest {
   vehicle: string
   licensePlate: string
-  description: string | null
+  description?: string
   clientId: number
 }
 
