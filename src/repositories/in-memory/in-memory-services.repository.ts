@@ -6,12 +6,12 @@ export class InMemoryServicesRepository implements ServicesRepository {
 
   async create(data: Prisma.ServiceUncheckedCreateInput) {
     const service = {
-      id: BigInt(this.items.length + 1),
+      id: this.items.length + 1,
       vehicle: data.vehicle,
       licensePlate: data.licensePlate,
       description: data.description ?? null,
       status: data.status ?? ServiceStatus.PENDING,
-      clientId: BigInt(data.clientId),
+      clientId: data.clientId,
     }
 
     this.items.push(service)
@@ -19,7 +19,7 @@ export class InMemoryServicesRepository implements ServicesRepository {
     return service
   }
 
-  async findById(id: bigint) {
+  async findById(id: number) {
     const service = this.items.find((service) => service.id === id)
 
     if (!service) {
@@ -29,7 +29,7 @@ export class InMemoryServicesRepository implements ServicesRepository {
     return service
   }
 
-  async delete(id: bigint) {
+  async delete(id: number) {
     const service = this.items.find((service) => service.id === id)
 
     if (!service) {

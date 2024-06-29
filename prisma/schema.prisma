@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Mechanic {
-  id       BigInt @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   email    String @unique
   password String
 
@@ -22,7 +22,7 @@ model Mechanic {
 }
 
 model Client {
-  id    BigInt  @id @default(autoincrement())
+  id    Int     @id @default(autoincrement())
   name  String
   cpf   String  @unique
   phone String?
@@ -33,14 +33,14 @@ model Client {
 }
 
 model Service {
-  id           BigInt        @id @default(autoincrement())
+  id           Int           @id @default(autoincrement())
   vehicle      String
   licensePlate String
   description  String?
   status       ServiceStatus @default(PENDING)
 
   client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  clientId BigInt
+  clientId Int
 
   @@map("services")
 }

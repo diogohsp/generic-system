@@ -6,7 +6,7 @@ interface CreateServiceUseCaseRequest {
   vehicle: string
   licensePlate: string
   description: string | null
-  clientId: bigint
+  clientId: number
 }
 
 export class CreateServiceUseCase {

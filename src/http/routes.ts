@@ -5,8 +5,10 @@ import { createClient } from './controllers/create-client'
 import { deleteClient } from './controllers/delete-client'
 import { createService } from './controllers/create-service'
 import { deleteService } from './controllers/delete-service'
+import { getClientProfile } from './controllers/get-client-profile'
 
 export async function appRoutes(app: FastifyInstance) {
+  app.get('/clients/:id', getClientProfile)
   app.post('/mechanics', registerMechanic)
   app.post('/mechanics/sessions', authenticateMechanic)
   app.post('/clients', createClient)

@@ -1,9 +1,9 @@
 import { ClienteNotFoundError } from '@/use-cases/errors/client-not-found.error'
-import { makeDeleteClientUseCase } from '@/use-cases/factories/make-delete-client-use-case'
+import { makeGetClientProfileUseCase } from '@/use-cases/factories/make-get-client-profile-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-export async function deleteClient(
+export async function getClientProfile(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
@@ -13,16 +13,16 @@ export async function deleteClient(
 
   const { id } = paramsSchema.parse(request.params)
 
-  console.log('ID: ', id)
-
   try {
-    const deleteClientUseCase = makeDeleteClientUseCase()
+    const getClientProfileUseCase = makeGetClientProfileUseCase()
 
-    await deleteClientUseCase.execute({
+    const { client } = await getClientProfileUseCase.execute({
       id,
     })
 
-    return reply.status(200).send()
+    return reply.status(200).send({
+      client,
+    })
   } catch (error) {
     if (error instanceof ClienteNotFoundError) {
       return reply.status(404).send({ message: error.message })

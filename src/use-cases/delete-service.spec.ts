@@ -33,7 +33,7 @@ describe('Delete Service Use Case', async () => {
   })
 
   it('should not be able to delete a non-existing service', async () => {
-    await expect(sut.execute({ id: BigInt(1) })).rejects.toBeInstanceOf(
+    await expect(sut.execute({ id: 1 })).rejects.toBeInstanceOf(
       ServiceNotFoundError,
     )
   })

@@ -6,7 +6,7 @@ export class InMemoryClientsRepository implements ClientsRepository {
 
   async create(data: Prisma.ClientCreateInput) {
     const client = {
-      id: BigInt(this.items.length + 1),
+      id: this.items.length + 1,
       name: data.name,
       cpf: data.cpf,
       phone: data.phone ?? null,
@@ -27,7 +27,7 @@ export class InMemoryClientsRepository implements ClientsRepository {
     return client
   }
 
-  async findById(id: bigint) {
+  async findById(id: number) {
     const client = this.items.find((item) => item.id === id)
 
     if (!client) {
@@ -37,7 +37,7 @@ export class InMemoryClientsRepository implements ClientsRepository {
     return client
   }
 
-  async delete(id: bigint) {
+  async delete(id: number) {
     const client = this.items.find((item) => item.id === id)
 
     if (!client) {

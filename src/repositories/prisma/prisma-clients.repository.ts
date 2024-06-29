@@ -25,7 +25,7 @@ export class PrismaClientsRepository implements ClientsRepository {
     return client
   }
 
-  async findById(id: bigint) {
+  async findById(id: number) {
     const client = await prisma.client.findUnique({
       where: {
         id,
@@ -35,7 +35,7 @@ export class PrismaClientsRepository implements ClientsRepository {
     return client
   }
 
-  async delete(id: bigint) {
+  async delete(id: number) {
     const client = await prisma.client.delete({
       where: {
         id,

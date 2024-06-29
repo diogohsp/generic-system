@@ -1,31 +1,29 @@
-import { describe, it, beforeEach, expect } from 'vitest'
-import { DeleteClientUseCase } from './delete-client'
 import { InMemoryClientsRepository } from '@/repositories/in-memory/in-memory-clients.repository'
+import { GetClientProfileUseCase } from './get-client-profile'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { ClienteNotFoundError } from './errors/client-not-found.error'
 
 let clientsRepository: InMemoryClientsRepository
-let sut: DeleteClientUseCase
+let sut: GetClientProfileUseCase
 
-describe('Delete Client Use Case', async () => {
+describe('Delete Service Use Case', async () => {
   beforeEach(async () => {
     clientsRepository = new InMemoryClientsRepository()
-    sut = new DeleteClientUseCase(clientsRepository)
+    sut = new GetClientProfileUseCase(clientsRepository)
   })
 
-  it('should be able to delete a client', async () => {
+  it('should be able to get a client profile', async () => {
     const client = await clientsRepository.create({
       name: 'John Doe',
       cpf: '123',
     })
 
-    const { client: deletedClient } = await sut.execute({
-      id: client.id,
-    })
+    const { client: clientFinded } = await sut.execute({ id: client.id })
 
-    expect(deletedClient).toEqual(client)
+    expect(clientFinded.id).toEqual(client.id)
   })
 
-  it('should not be able to delete a non-existing client', async () => {
+  it('should not be able to get a non-existing client profile', async () => {
     await expect(sut.execute({ id: 1 })).rejects.toBeInstanceOf(
       ClienteNotFoundError,
     )

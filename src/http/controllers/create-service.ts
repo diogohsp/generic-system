@@ -26,7 +26,7 @@ export async function createService(
       { message: 'Placa inválida' },
     ),
     description: z.string().nullable(),
-    clientId: z.coerce.bigint(),
+    clientId: z.coerce.number(),
   })
 
   const { vehicle, licensePlate, description, clientId } = bodySchema.parse(

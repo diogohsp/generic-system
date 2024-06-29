@@ -2,7 +2,7 @@ import { ServicesRepository } from '@/repositories/services-repositroy'
 import { ServiceNotFoundError } from './errors/service-not-found.error'
 
 interface DeleteServiceUseCaseParams {
-  id: bigint
+  id: number
 }
 
 export class DeleteServiceUseCase {

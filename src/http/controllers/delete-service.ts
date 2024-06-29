@@ -8,7 +8,7 @@ export async function deleteService(
   reply: FastifyReply,
 ) {
   const paramsSchema = z.object({
-    id: z.coerce.bigint(),
+    id: z.coerce.number(),
   })
 
   const { id } = paramsSchema.parse(request.params)

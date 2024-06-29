@@ -6,7 +6,7 @@ export class InMemoryMechaenicsRepository implements MechanicsRepository {
 
   async create(data: Prisma.MechanicCreateInput) {
     const mechanic = {
-      id: BigInt(this.items.length + 1),
+      id: this.items.length + 1,
       email: data.email,
       password: data.password,
     }
