@@ -2,7 +2,7 @@ import { InMemoryServicesRepository } from '@/repositories/in-memory/in-memory-s
 import { beforeEach, describe, expect, it } from 'vitest'
 import { CreateServiceUseCase } from './create-service'
 import { InMemoryClientsRepository } from '@/repositories/in-memory/in-memory-clients.repository'
-import { ClienteNotFoundError } from './errors/client-not-found.error'
+import { ClientNotFoundError } from './errors/client-not-found.error'
 
 let servicesRepository: InMemoryServicesRepository
 let clientsRepository: InMemoryClientsRepository
@@ -47,6 +47,6 @@ describe('Create Service Use Case', async () => {
         licensePlate: 'ABC-1234',
         clientId: 1,
       }),
-    ).rejects.toBeInstanceOf(ClienteNotFoundError)
+    ).rejects.toBeInstanceOf(ClientNotFoundError)
   })
 })

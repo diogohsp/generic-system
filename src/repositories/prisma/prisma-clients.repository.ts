@@ -44,4 +44,15 @@ export class PrismaClientsRepository implements ClientsRepository {
 
     return client
   }
+
+  async update(id: number, data: Prisma.ClientUpdateInput) {
+    const client = await prisma.client.update({
+      where: {
+        id,
+      },
+      data,
+    })
+
+    return client
+  }
 }

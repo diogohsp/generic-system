@@ -1,4 +1,4 @@
-import { ClienteNotFoundError } from '@/use-cases/errors/client-not-found.error'
+import { ClientNotFoundError } from '@/use-cases/errors/client-not-found.error'
 import { makeDeleteClientUseCase } from '@/use-cases/factories/make-delete-client-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
@@ -24,7 +24,7 @@ export async function deleteClient(
 
     return reply.status(200).send()
   } catch (error) {
-    if (error instanceof ClienteNotFoundError) {
+    if (error instanceof ClientNotFoundError) {
       return reply.status(404).send({ message: error.message })
     }
 

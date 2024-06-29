@@ -1,7 +1,7 @@
 import { InMemoryClientsRepository } from '@/repositories/in-memory/in-memory-clients.repository'
 import { GetClientProfileUseCase } from './get-client-profile'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { ClienteNotFoundError } from './errors/client-not-found.error'
+import { ClientNotFoundError } from './errors/client-not-found.error'
 
 let clientsRepository: InMemoryClientsRepository
 let sut: GetClientProfileUseCase
@@ -26,7 +26,7 @@ describe('Get Cliente Profile Use Case', async () => {
 
   it('should not be able to get a non-existing client profile', async () => {
     await expect(sut.execute({ id: 1 })).rejects.toBeInstanceOf(
-      ClienteNotFoundError,
+      ClientNotFoundError,
     )
   })
 })

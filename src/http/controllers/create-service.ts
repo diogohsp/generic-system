@@ -1,4 +1,4 @@
-import { ClienteNotFoundError } from '@/use-cases/errors/client-not-found.error'
+import { ClientNotFoundError } from '@/use-cases/errors/client-not-found.error'
 import { makeCreateServiceUseCase } from '@/use-cases/factories/make-create-service-use-case'
 import { validateLicensePlate } from '@/utils/validate-license-plate'
 import { FastifyReply, FastifyRequest } from 'fastify'
@@ -45,7 +45,7 @@ export async function createService(
 
     return reply.status(201).send()
   } catch (error) {
-    if (error instanceof ClienteNotFoundError) {
+    if (error instanceof ClientNotFoundError) {
       return reply.status(404).send({ message: error.message })
     }
 

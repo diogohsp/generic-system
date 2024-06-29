@@ -1,7 +1,7 @@
 import { describe, it, beforeEach, expect } from 'vitest'
 import { DeleteClientUseCase } from './delete-client'
 import { InMemoryClientsRepository } from '@/repositories/in-memory/in-memory-clients.repository'
-import { ClienteNotFoundError } from './errors/client-not-found.error'
+import { ClientNotFoundError } from './errors/client-not-found.error'
 
 let clientsRepository: InMemoryClientsRepository
 let sut: DeleteClientUseCase
@@ -28,7 +28,7 @@ describe('Delete Client Use Case', async () => {
 
   it('should not be able to delete a non-existing client', async () => {
     await expect(sut.execute({ id: 1 })).rejects.toBeInstanceOf(
-      ClienteNotFoundError,
+      ClientNotFoundError,
     )
   })
 })

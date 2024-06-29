@@ -1,5 +1,5 @@
 import { ClientsRepository } from '@/repositories/clients-repository'
-import { ClienteNotFoundError } from './errors/client-not-found.error'
+import { ClientNotFoundError } from './errors/client-not-found.error'
 
 interface DeleteClientUseCaseParams {
   id: number
@@ -12,7 +12,7 @@ export class DeleteClientUseCase {
     const client = await this.clientsRepository.findById(id)
 
     if (!client) {
-      throw new ClienteNotFoundError()
+      throw new ClientNotFoundError()
     }
 
     await this.clientsRepository.delete(id)

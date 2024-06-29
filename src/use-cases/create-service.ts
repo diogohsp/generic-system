@@ -1,6 +1,6 @@
 import { ClientsRepository } from '@/repositories/clients-repository'
 import { ServicesRepository } from '@/repositories/services-repositroy'
-import { ClienteNotFoundError } from './errors/client-not-found.error'
+import { ClientNotFoundError } from './errors/client-not-found.error'
 
 interface CreateServiceUseCaseRequest {
   vehicle: string
@@ -24,7 +24,7 @@ export class CreateServiceUseCase {
     const client = await this.clientsRepository.findById(clientId)
 
     if (!client) {
-      throw new ClienteNotFoundError()
+      throw new ClientNotFoundError()
     }
 
     const service = await this.servicesRepository.create({

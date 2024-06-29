@@ -48,4 +48,25 @@ export class InMemoryClientsRepository implements ClientsRepository {
 
     return client
   }
+
+  async update(id: number, data: Prisma.ClientUpdateInput) {
+    const client = this.items.find((item) => item.id === id)
+
+    const updatedClient = {
+      id: client!.id,
+      name: data.name as string,
+      cpf: data.cpf as string,
+      phone: data.phone as string,
+    }
+
+    this.items = this.items.map((item) => {
+      if (item.id === id) {
+        return updatedClient
+      }
+
+      return item
+    })
+
+    return updatedClient
+  }
 }
