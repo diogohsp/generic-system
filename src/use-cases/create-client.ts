@@ -5,7 +5,7 @@ import { ClientAlreadyExistsError } from './errors/client-already-exists.error'
 interface CreateClientUseCaseRequest {
   name: string
   cpf: string
-  phone: string | null
+  phone: string
 }
 
 interface CreateClientUseCaseResponse {

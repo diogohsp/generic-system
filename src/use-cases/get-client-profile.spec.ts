@@ -6,7 +6,7 @@ import { ClienteNotFoundError } from './errors/client-not-found.error'
 let clientsRepository: InMemoryClientsRepository
 let sut: GetClientProfileUseCase
 
-describe('Delete Service Use Case', async () => {
+describe('Get Cliente Profile Use Case', async () => {
   beforeEach(async () => {
     clientsRepository = new InMemoryClientsRepository()
     sut = new GetClientProfileUseCase(clientsRepository)
@@ -16,6 +16,7 @@ describe('Delete Service Use Case', async () => {
     const client = await clientsRepository.create({
       name: 'John Doe',
       cpf: '123',
+      phone: '123',
     })
 
     const { client: clientFinded } = await sut.execute({ id: client.id })

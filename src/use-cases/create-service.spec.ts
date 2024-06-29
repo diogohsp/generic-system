@@ -19,12 +19,12 @@ describe('Create Service Use Case', async () => {
     const client = await clientsRepository.create({
       name: 'John Doe',
       cpf: '123',
+      phone: '123',
     })
 
     const { service } = await sut.execute({
       vehicle: 'Fusca',
       licensePlate: 'ABC-1234',
-      description: null,
       clientId: client.id,
     })
 
@@ -45,7 +45,6 @@ describe('Create Service Use Case', async () => {
       sut.execute({
         vehicle: 'Fusca',
         licensePlate: 'ABC-1234',
-        description: null,
         clientId: 1,
       }),
     ).rejects.toBeInstanceOf(ClienteNotFoundError)

@@ -39,8 +39,7 @@ export async function createClient(
           return isPhoneValid
         },
         { message: 'Telefone Inválido' },
-      )
-      .nullable(),
+      ),
   })
 
   const { name, cpf, phone } = bodySchema.parse(request.body)

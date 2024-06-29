@@ -1,5 +1,5 @@
-import { ClienteNotFoundError } from './errors/client-not-found.error'
 import { ServicesRepository } from '@/repositories/services-repositroy'
+import { ServiceNotFoundError } from './errors/service-not-found.error'
 
 interface GetServiceDetailsUseCaseParams {
   id: number
@@ -9,14 +9,14 @@ export class GetServiceDetailsUseCase {
   constructor(private servicesRepository: ServicesRepository) {}
 
   async execute({ id }: GetServiceDetailsUseCaseParams) {
-    const client = await this.servicesRepository.findById(id)
+    const service = await this.servicesRepository.findById(id)
 
-    if (!client) {
-      throw new ClienteNotFoundError()
+    if (!service) {
+      throw new ServiceNotFoundError()
     }
 
     return {
-      client,
+      service,
     }
   }
 }

@@ -16,6 +16,7 @@ describe('Delete Client Use Case', async () => {
     const client = await clientsRepository.create({
       name: 'John Doe',
       cpf: '123',
+      phone: '123',
     })
 
     const { client: deletedClient } = await sut.execute({

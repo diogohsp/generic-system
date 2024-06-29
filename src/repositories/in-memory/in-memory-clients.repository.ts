@@ -9,7 +9,7 @@ export class InMemoryClientsRepository implements ClientsRepository {
       id: this.items.length + 1,
       name: data.name,
       cpf: data.cpf,
-      phone: data.phone ?? null,
+      phone: data.phone,
     }
 
     this.items.push(client)

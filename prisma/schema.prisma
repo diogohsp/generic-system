@@ -22,10 +22,10 @@ model Mechanic {
 }
 
 model Client {
-  id    Int     @id @default(autoincrement())
+  id    Int    @id @default(autoincrement())
   name  String
-  cpf   String  @unique
-  phone String?
+  cpf   String @unique
+  phone String
 
   services Service[]
 
